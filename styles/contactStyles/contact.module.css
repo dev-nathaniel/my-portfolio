@@ -1,0 +1,77 @@
+.contactCont {
+    padding: 150px 4vw;
+}
+
+.serviceSec {
+    padding-bottom: 150px;
+}
+
+.formWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.form {
+    width: 80%;
+}
+
+.inputWrapper {
+    border-bottom: 1px solid rgba(255, 255, 255, .5);
+    margin-bottom: 50px;
+    position: relative;
+}
+
+.inputWrapper input {
+    background-color: transparent;
+    width: 100%;
+    line-height: 1.1;
+    letter-spacing: -.03em;
+    /* padding-bottom: 20px; */
+    height: 40px;
+    color: #fff;
+}
+
+.inputWrapper textarea {
+    background-color: transparent;
+    border: 0;
+    width: 100%;
+    line-height: 1.1;
+    letter-spacing: -.03em;
+    color: #fff;
+    overflow: auto;
+    font-family: 'Montserrat', sans-serif;
+    outline: none;
+    font-size: 16px;
+    margin-top: 12px;
+}
+
+/* .inputWrapper label {
+    width: 100%;
+    line-height: 1.1;
+    letter-spacing: -.03em;
+    position: absolute;
+    top: 0;
+    left: 0;
+    color: #fff;
+    pointer-events: none;
+} */
+
+.contactButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    border: 2px solid #fff;
+    border-radius: 100px;
+    font-size: 1.5rem;
+    margin-top: 30px;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.contactButton:hover {
+    background-color: #fff;
+    color: black;
+}

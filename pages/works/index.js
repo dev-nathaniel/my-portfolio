@@ -255,7 +255,7 @@ const Works = () => {
                         {searchParams.get('type') == 'websites' ? 
                         <>
                         <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href="https://shuttl.app" target={'_blank'}>
+                            <a href="https://shuttl-web.netlify.app" target={'_blank'}>
                                 <div className={styles.wrapLink}>
                                     <img src="./shuttl.png" />
                                 </div>

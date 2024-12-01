@@ -1,0 +1,67 @@
+.work {
+    /* background: linear-gradient(116.82deg, #040EFF 0%, #001FBD 100%); */
+    height: 100vh;
+    pointer-events: none;
+    margin-top: 50px;
+    /* background-color: #fff; */
+}
+
+/* just for streaks */
+
+.workContainer {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+.workName {
+    position: absolute;
+    font-size: 10vw;
+    mix-blend-mode: difference;
+    z-index: 3000;
+    font-family: 'dharma M';
+    letter-spacing: 10px;
+}
+
+.workContainer p {
+    font-size: 40vw;
+    /* transform: translateY(20px); */
+    /* font-family: 'Scope One', serif; */
+    font-family: 'dharma M';
+    /* color: #000; */
+}
+
+
+
+.absoluteCircle1 {
+    width: 31.3vw;
+    height: 31.3vw;
+    position: absolute;
+    top: 0;
+    background: linear-gradient(130.86deg, #E0F028 14.95%, rgba(217, 217, 217, 0) 84.33%);
+    border-radius: 50%;
+}
+.absoluteCircle2 {
+    width: 31.3vw;
+    height: 31.3vw;
+    position: absolute;
+    top: 10%;
+    right: 0;
+    background: linear-gradient(130.86deg, rgba(0, 26, 255, 0.7) 14.95%, rgba(255, 255, 255, 0.5) 84.33%);
+    border-radius: 50%;
+}
+
+#workName {
+    transition: all 1s;
+    transform: translateY(100%);
+}
+
+@keyframes workName {
+    0% {
+
+    }
+    100% {
+
+    }
+}

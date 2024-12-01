@@ -1,0 +1,114 @@
+.me {
+    height: 100vh;
+    position: relative;
+    z-index: 3;
+} 
+
+.meMain {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.meMainContainer {
+    /* margin: 0px 90px 0px 100px; */
+    display: flex;
+    /* padding-top: 80px; */
+    flex-direction: column;
+    
+    font-family: 'Sussie';
+}
+
+.meMainContainer .firstName {
+    font-size: 11.8vw;
+    line-height: 11.8vw;
+    overflow: hidden;
+    height: 11.8vw;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.firstName p {
+    transform: translateY(0);
+    transition: transform 2s;
+}  
+
+
+
+.firstName:hover p {
+    transform: translateY(-11.8vw);
+    transition: transform 2s;
+}
+
+.firstName:hover ~ .lastName p {
+    transform: translateY(-11.8vw);
+    transition: transform 2s;
+}  
+
+
+
+
+
+.meMainContainer .lastName {
+    font-size: 11.8vw;
+    line-height: 11.8vw;
+    height: 11.8vw;
+    overflow: hidden;
+    z-index: -2;
+    text-align: center;
+}
+
+.lastName:hover  {
+    z-index: 2;
+}
+
+.lastName p {
+    transform: translateY(0);
+    transition: transform 2s;
+} 
+
+
+@supports((text-stroke: 3px #00000030) or (-webkit-text-stroke: 3px #00000030)) {
+    .meMainContainer .lastName {
+        color: transparent;
+        -webkit-text-stroke: 3px #fff;
+        text-stroke: 3px #fff;
+        text-shadow: none;
+    }
+  }
+
+
+  @media screen and (max-width: 500px) {
+    .meMainContainer {
+        margin: 0 12px;
+    }
+
+    .meMainContainer .lastName {
+        color: #fff;
+        text-stroke: 0;
+        -webkit-text-stroke: 0;
+        margin-top: 20px;
+        text-align: left;
+    }
+
+    .meMainContainer .firstName {
+        text-align: left;
+    }
+  }
+
+/*.spin {
+    /*margin-left: 600px;
+    align-self: flex-end;
+    animation: spin 7s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}*/
+

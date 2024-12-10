@@ -70,13 +70,14 @@ const Contact = () => {
         }
         setLoading(true); // Start loading animation
         try {
+            const deliveryPeriod = period
             const response = await axios.post('https://my-portfolio-backend-8401.onrender.com/sendEmail', {
                 name,
                 company,
                 email,
                 service,
                 budget,
-                period,
+                deliveryPeriod,
                 details
             });
             toast.success('Email sent successfully!');

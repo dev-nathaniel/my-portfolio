@@ -50,7 +50,7 @@ const Contact = () => {
                     <a target='_blank' href=''>
                         <FaWhatsapp className={styles.social} style={{zIndex: 2, '--color': '#000', mixBlendMode: 'difference'}} />
                     </a>
-                    <a target='_blank' href='https://github.com/Olowodev'>
+                    <a target='_blank' href='https://github.com/dev-nathaniel'>
                         <FaGithub className={styles.social} style={{zIndex: 2, '--color': '#000', mixBlendMode: 'difference'}} />
                     </a>
                 </div>

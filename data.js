@@ -39,7 +39,7 @@ export const workSlideShow = [
         id: 7,
         cover: 'shuttl.png',
         title: 'SHUTTL',
-        link: 'https://shuttl.app'
+        link: 'https://shuttl-web.netlify.app'
     },
     {
         id: 8,

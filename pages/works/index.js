@@ -281,7 +281,7 @@ const Works = () => {
                         <></>
                         }
                         <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href={searchParams.get('type') == 'websites' ? "https://orpheus-nft-site.netlify.app" : "https://github.com/Olowodev/car-app"} target={'_blank'}>
+                            <a href={searchParams.get('type') == 'websites' ? "https://orpheus-nft-site.netlify.app" : "https://github.com/dev-nathaniel/car-app"} target={'_blank'}>
                                 <div className={styles.wrapLink}>
                                     <img src={searchParams.get('type') == 'websites' ? "./orpheus.png" : "./abstract1.png"} />
                                 </div>
@@ -292,7 +292,7 @@ const Works = () => {
                             </a>
                         </div>
                         <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href={searchParams.get('type') == 'websites' ? "https://music-olowo.netlify.app" : "https://github.com/Olowodev/nft-wallet"} target={'_blank'}>
+                            <a href={searchParams.get('type') == 'websites' ? "https://music-olowo.netlify.app" : "https://github.com/dev-nathaniel/nft-wallet"} target={'_blank'}>
                                 <div className={styles.wrapLink}>
                                     <img src={searchParams.get('type') == 'websites' ? "./music.png" : "./abstract2.png"} />
                                 </div>
@@ -303,7 +303,7 @@ const Works = () => {
                             </a>
                         </div>
                         <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href={searchParams.get('type') == 'websites' ? "https://gis-vanilla.netlify.app" : "https://github.com/Olowodev/shoe-ecommerce"} target={'_blank'}>
+                            <a href={searchParams.get('type') == 'websites' ? "https://gis-vanilla.netlify.app" : "https://github.com/dev-nathaniel/shoe-ecommerce"} target={'_blank'}>
                                 <div className={styles.wrapLink}>
                                     <img src={searchParams.get('type') == 'websites' ? "./gis.png" : "./abstract3.png"} />
                                 </div>
@@ -314,7 +314,7 @@ const Works = () => {
                             </a>
                         </div>
                         <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href={searchParams.get('type') == 'websites' ? "https://github.com/Olowodev/trinac-victor-twitter" : "https://github.com/Olowodev/mume"} target={'_blank'}>
+                            <a href={searchParams.get('type') == 'websites' ? "https://github.com/dev-nathaniel/trinac-victor-twitter" : "https://github.com/dev-nathaniel/mume"} target={'_blank'}>
                                 <div className={styles.wrapLink}>
                                     <img src={searchParams.get('type') == 'websites' ? "./trinac.png" : "./mume.png"} />
                                 </div>

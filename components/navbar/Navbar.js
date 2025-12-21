@@ -162,7 +162,7 @@ useEffect(()=> {
 
 
     const downloadPDF = () => {
-        const pdfURL = 'Copy of Adebayo CV.pdf'
+        const pdfURL = 'Adebayo CV.pdf'
         const fileName = "Adebayo's resume"
         fetch(pdfURL)
             .then(response => response.blob())

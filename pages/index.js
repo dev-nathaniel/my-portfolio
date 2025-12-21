@@ -1,6 +1,6 @@
 import Head from 'next/head'
 import Image from 'next/image'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useLayoutEffect } from 'react'
 import gsap from 'gsap'
 import About from '../components/About'
 import Contact from '../components/Contact'
@@ -27,7 +27,9 @@ export default function Home() {
   const stateRef = useRef({ x: 0 })
   const veloRef = useRef(0)
 
-  useEffect(() => {
+  // Use useLayoutEffect for ScrollTrigger to avoid FOUC/layout shifts
+  // on mobile where the address bar might resize the viewport.
+  useLayoutEffect(() => {
     let ctx = gsap.context(() => {
       //       ScrollTrigger.scrollerProxy('#main', {pinType: 'transform', 
       //   scrollTop(value) {
@@ -111,6 +113,9 @@ export default function Home() {
         x: -5.5,
       })
     })
+
+    // Force refresh after a tick to ensure layout is settled (esp on mobile)
+    ScrollTrigger.refresh()
 
     return () => ctx.revert()
   }, [])

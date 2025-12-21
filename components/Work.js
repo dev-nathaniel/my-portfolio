@@ -136,9 +136,9 @@ const Picture = ({ veloRef, cover, index, stateRef, title, link }) => {
             meshRef.current.position.x = (1.5 * index + 1) + stateRef.current.x
             if (ref.current) ref.current.uPosition = meshRef.current.position
         }
-        // if (ref.current && veloRef.current !== undefined) {
-        //     ref.current.uVelo = veloRef.current
-        // }
+        if (ref.current && veloRef.current !== undefined) {
+            ref.current.uVelo = veloRef.current
+        }
     })
 
     // if (hovered) {
@@ -153,7 +153,7 @@ const Picture = ({ veloRef, cover, index, stateRef, title, link }) => {
         <>
             <mesh onClick={() => navigate()} onPointerEnter={() => onHover(1)} onPointerLeave={() => onHover(0)} onPointerMove={(e) => mouse(e)} ref={meshRef}>
                 <planeGeometry ref={ref2} args={size} />
-                <slideShaderMaterial uVelo={veloRef.current} ref={ref} uTexture={image} />
+                <slideShaderMaterial ref={ref} uTexture={image} />
                 {/* <Html style={{backgroundColor: 'red', pointerEvents: 'none'}}>
                     <div >
                         <h1>TEST</h1>

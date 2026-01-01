@@ -12,12 +12,12 @@ import styles from '../../styles/workStyles/works.module.css'
 import * as THREE from 'three'
 import { Color, Texture, TextureLoader, Vector3 } from "three";
 import { workGallery, workSlideShow } from "../../data";
-import fragment from "raw-loader!glslify-loader!../../shaders/fragment.frag"
-import vertex from "raw-loader!glslify-loader!../../shaders/vertex.vert"
+import fragment from "../../shaders/fragment.frag"
+import vertex from "../../shaders/vertex.vert"
 import gsap from "gsap";
 import { Plane } from 'react-curtains'
-import fragment2 from "raw-loader!glslify-loader!../../shaders/fragment2.frag"
-import vertex2 from "raw-loader!glslify-loader!../../shaders/vertex2.vert"
+import fragment2 from "../../shaders/fragment2.frag"
+import vertex2 from "../../shaders/vertex2.vert"
 import { Curtains, useCurtainsEvent } from "react-curtains";
 import Head from "next/head";
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -57,15 +57,21 @@ const SlideShaderMaterial01 = shaderMaterial(
 extend({ SlideShaderMaterial01 })
 
 const HTML = ({ hovered, textRef, title }) => {
-    const animate = (node) => {
-        gsap.from(node, {
-            y: '100%'
-        })
+    const nodeRef = useRef(null);
+
+    const animate = () => {
+        if (nodeRef.current) {
+            gsap.from(nodeRef.current, {
+                y: '100%'
+            })
+        }
     }
-    const animateOut = (node) => {
-        gsap.to(node, {
-            y: '100%'
-        })
+    const animateOut = () => {
+        if (nodeRef.current) {
+            gsap.to(nodeRef.current, {
+                y: '100%'
+            })
+        }
     }
 
     return (
@@ -73,13 +79,14 @@ const HTML = ({ hovered, textRef, title }) => {
             <div style={{ overflow: 'hidden', height: '10vw' }}>
                 <Transition
                     in={hovered}
-                    onEnter={node => { animate(node) }}
-                    onExit={node => { animateOut(node) }}
+                    nodeRef={nodeRef}
+                    onEnter={animate}
+                    onExit={animateOut}
                     unmountOnExit
                     mountOnEnter
                     timeout={500}
                 >
-                    <p ref={textRef} id='workName' style={{ fontFamily: 'dharma M', fontSize: '10vw', mixBlendMode: 'difference', color: 'rgba(255, 255, 255, 0.9)', letterSpacing: '5px' }}>{title}</p>
+                    <p ref={nodeRef} id='workName' style={{ fontFamily: 'dharma M', fontSize: '10vw', mixBlendMode: 'difference', color: 'rgba(255, 255, 255, 0.9)', letterSpacing: '5px' }}>{title}</p>
                 </Transition>
             </div>
 
@@ -218,7 +225,7 @@ const Works = () => {
     return (
         <div className={`${styles.works} works ${hover ? styles.bgHover : null}`}>
             <Head>
-                <title>Adebayo Olowofoyeku</title>
+                <title>Adebayo's Works</title>
                 <meta name="description" content="Adebayo Olowofoyeku's portfolio. A full stack developer" />
                 <link rel="icon" href="/favicon.ico" />
                 <link rel='preconnect' href='https://fonts.googleapis.com' />
@@ -229,7 +236,7 @@ const Works = () => {
             <div style={{ position: 'relative' }}>
                 <div className={styles.tabCont}>
                     <div className={styles.tab}>
-                    <div className={selected == 'apps' ? styles.selected : null} onClick={() => changeSearchParam('apps')}>
+                        <div className={selected == 'apps' ? styles.selected : null} onClick={() => changeSearchParam('apps')}>
                             <p>Mobile Apps</p>
                         </div>
                         <div className={selected == 'websites' ? styles.selected : null} onClick={() => changeSearchParam('websites')}>
@@ -250,81 +257,81 @@ const Works = () => {
                 </div>
                 {/* {!loading ? */}
                 <>
-                <div className={styles.gridWrapper}>
-                    <div className={styles.grid}>
-                        {searchParams.get('type') == 'websites' ? 
-                        <>
-                        <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href="https://shuttl-web.netlify.app" target={'_blank'}>
-                                <div className={styles.wrapLink}>
-                                    <img src="./shuttl.png" />
-                                </div>
-                                <div className={styles.absolute}>
-                                    <p>Shuttl</p>
-                                    <AiOutlineLink />
-                                </div>
-                            </a>
-                        </div>
-                        <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href="https://kyra.netlify.app" target={'_blank'}>
-                                <div className={styles.wrapLink}>
-                                    <img src="./kyra.png" />
-                                </div>
-                                <div className={styles.absolute}>
-                                    <p>Kyra</p>
-                                    <AiOutlineLink />
-                                </div>
-                            </a>
-                        </div>
-                        </>
-                        : 
-                        <></>
-                        }
-                        <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href={searchParams.get('type') == 'websites' ? "https://orpheus-nft-site.netlify.app" : "https://github.com/dev-nathaniel/car-app"} target={'_blank'}>
-                                <div className={styles.wrapLink}>
-                                    <img src={searchParams.get('type') == 'websites' ? "./orpheus.png" : "./abstract1.png"} />
-                                </div>
-                                <div className={styles.absolute}>
-                                    {searchParams.get('type') == 'websites' ? <p>Orpheus</p> : <p>Cars</p>}
-                                    <AiOutlineLink />
-                                </div>
-                            </a>
-                        </div>
-                        <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href={searchParams.get('type') == 'websites' ? "https://music-olowo.netlify.app" : "https://github.com/dev-nathaniel/nft-wallet"} target={'_blank'}>
-                                <div className={styles.wrapLink}>
-                                    <img src={searchParams.get('type') == 'websites' ? "./music.png" : "./abstract2.png"} />
-                                </div>
-                                <div className={styles.absolute}>
-                                    {searchParams.get('type') == 'websites' ? <p>Music App</p> : <p>NFT Wallet</p>}
-                                    <AiOutlineLink />
-                                </div>
-                            </a>
-                        </div>
-                        <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href={searchParams.get('type') == 'websites' ? "https://gis-vanilla.netlify.app" : "https://github.com/dev-nathaniel/shoe-ecommerce"} target={'_blank'}>
-                                <div className={styles.wrapLink}>
-                                    <img src={searchParams.get('type') == 'websites' ? "./gis.png" : "./abstract3.png"} />
-                                </div>
-                                <div className={styles.absolute}>
-                                    {searchParams.get('type') == 'websites' ? <p>GIS Web</p> : <p>ShoeComm</p>}
-                                    <AiOutlineLink />
-                                </div>
-                            </a>
-                        </div>
-                        <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
-                            <a href={searchParams.get('type') == 'websites' ? "https://github.com/dev-nathaniel/trinac-victor-twitter" : "https://github.com/dev-nathaniel/mume"} target={'_blank'}>
-                                <div className={styles.wrapLink}>
-                                    <img src={searchParams.get('type') == 'websites' ? "./trinac.png" : "./mume.png"} />
-                                </div>
-                                <div className={styles.absolute}>
-                                    {searchParams.get('type') == 'websites' ? <p>Trinac</p> : <p>Mume</p>}
-                                    <AiOutlineLink />
-                                </div>
-                            </a>
-                        </div>
-                        {/* <div onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} className={styles.cell}>
+                    <div className={styles.gridWrapper}>
+                        <div className={styles.grid}>
+                            {searchParams.get('type') == 'websites' ?
+                                <>
+                                    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
+                                        <a href="https://shuttl-web.netlify.app" target={'_blank'}>
+                                            <div className={styles.wrapLink}>
+                                                <img src="./shuttl.png" />
+                                            </div>
+                                            <div className={styles.absolute}>
+                                                <p>Shuttl</p>
+                                                <AiOutlineLink />
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
+                                        <a href="https://kyra.netlify.app" target={'_blank'}>
+                                            <div className={styles.wrapLink}>
+                                                <img src="./kyra.png" />
+                                            </div>
+                                            <div className={styles.absolute}>
+                                                <p>Kyra</p>
+                                                <AiOutlineLink />
+                                            </div>
+                                        </a>
+                                    </div>
+                                </>
+                                :
+                                <></>
+                            }
+                            <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
+                                <a href={searchParams.get('type') == 'websites' ? "https://orpheus-nft-site.netlify.app" : "https://github.com/dev-nathaniel/car-app"} target={'_blank'}>
+                                    <div className={styles.wrapLink}>
+                                        <img src={searchParams.get('type') == 'websites' ? "./orpheus.png" : "./abstract1.png"} />
+                                    </div>
+                                    <div className={styles.absolute}>
+                                        {searchParams.get('type') == 'websites' ? <p>Orpheus</p> : <p>Cars</p>}
+                                        <AiOutlineLink />
+                                    </div>
+                                </a>
+                            </div>
+                            <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
+                                <a href={searchParams.get('type') == 'websites' ? "https://music-olowo.netlify.app" : "https://github.com/dev-nathaniel/nft-wallet"} target={'_blank'}>
+                                    <div className={styles.wrapLink}>
+                                        <img src={searchParams.get('type') == 'websites' ? "./music.png" : "./abstract2.png"} />
+                                    </div>
+                                    <div className={styles.absolute}>
+                                        {searchParams.get('type') == 'websites' ? <p>Music App</p> : <p>NFT Wallet</p>}
+                                        <AiOutlineLink />
+                                    </div>
+                                </a>
+                            </div>
+                            <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
+                                <a href={searchParams.get('type') == 'websites' ? "https://gis-vanilla.netlify.app" : "https://github.com/dev-nathaniel/shoe-ecommerce"} target={'_blank'}>
+                                    <div className={styles.wrapLink}>
+                                        <img src={searchParams.get('type') == 'websites' ? "./gis.png" : "./abstract3.png"} />
+                                    </div>
+                                    <div className={styles.absolute}>
+                                        {searchParams.get('type') == 'websites' ? <p>GIS Web</p> : <p>ShoeComm</p>}
+                                        <AiOutlineLink />
+                                    </div>
+                                </a>
+                            </div>
+                            <div onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)} className={styles.cell}>
+                                <a href={searchParams.get('type') == 'websites' ? "https://github.com/dev-nathaniel/trinac-victor-twitter" : "https://github.com/dev-nathaniel/mume"} target={'_blank'}>
+                                    <div className={styles.wrapLink}>
+                                        <img src={searchParams.get('type') == 'websites' ? "./trinac.png" : "./mume.png"} />
+                                    </div>
+                                    <div className={styles.absolute}>
+                                        {searchParams.get('type') == 'websites' ? <p>Trinac</p> : <p>Mume</p>}
+                                        <AiOutlineLink />
+                                    </div>
+                                </a>
+                            </div>
+                            {/* <div onMouseEnter={()=>setHover(true)} onMouseLeave={()=>setHover(false)} className={styles.cell}>
                             <a href="https://thedecalmasters.com" target={'_blank'}>
                             <div className={styles.wrapLink}>
                             <img src="./abstract4.jpg" />
@@ -335,13 +342,13 @@ const Works = () => {
                             </div>
                             </a>
                         </div> */}
-                        {/* <div></div>
+                            {/* <div></div>
                         <div></div>
                         <div></div> */}
+                        </div>
                     </div>
-                </div>
                 </>
-                 {/* :
+                {/* :
                  <div style={{position: 'absolute', top: '50%', left: '50%', transform: {translate: '-50% -50%'}}}>
                      <div className={styles.ldsRing}><div></div><div></div><div></div><div></div></div>
                 </div> */}

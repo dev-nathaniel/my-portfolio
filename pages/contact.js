@@ -97,46 +97,46 @@ const Contact = () => {
     return (
         <div>
             <Head>
-        <title>Adebayo Olowofoyeku</title>
-        <meta name="description" content="Adebayo Olowofoyeku's portfolio. A full stack developer" />
-        <link rel="icon" href="/favicon.ico" />
-        <link rel='preconnect' href='https://fonts.googleapis.com' />
-        <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
-        <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Scope+One&display=swap" rel="stylesheet"></link>
-      </Head>
+                <title>Adebayo's Contact</title>
+                <meta name="description" content="Adebayo Olowofoyeku's portfolio. A full stack developer" />
+                <link rel="icon" href="/favicon.ico" />
+                <link rel='preconnect' href='https://fonts.googleapis.com' />
+                <link rel='preconnect' href='https://fonts.gstatic.com' crossOrigin />
+                <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Scope+One&display=swap" rel="stylesheet"></link>
+            </Head>
             {/* <Navbar /> */}
             <div className={styles.contactCont}>
                 <div className={styles.serviceSec}>
-                    <p style={{fontSize: 'calc(1.5rem + 3vw)', marginBottom: '50px'}}>Which of my services do you need?</p>
-                    <ul style={{listStyle: 'none', padding: 0}}>
+                    <p style={{ fontSize: 'calc(1.5rem + 3vw)', marginBottom: '50px' }}>Which of my services do you need?</p>
+                    <ul style={{ listStyle: 'none', padding: 0 }}>
                         {services.map((serviceObj, index) => (
-                            <Pill state={service} clicked={serviceClicked} setClicked={setServiceClicked} onClick={()=>onServiceClick(serviceObj.title)} text={serviceObj.title} />
+                            <Pill state={service} clicked={serviceClicked} setClicked={setServiceClicked} onClick={() => onServiceClick(serviceObj.title)} text={serviceObj.title} />
                         ))}
                     </ul>
                 </div>
                 <div className={styles.serviceSec}>
-                <p style={{fontSize: 'calc(1.5rem + 3vw)', marginBottom: '50px'}}>What is your budget range?</p>
-                    <ul style={{listStyle: 'none', padding: 0}}>
+                    <p style={{ fontSize: 'calc(1.5rem + 3vw)', marginBottom: '50px' }}>What is your budget range?</p>
+                    <ul style={{ listStyle: 'none', padding: 0 }}>
                         {budgetRanges.map((budgetObj, index) => (
-                            <Pill state={budget} clicked={budgetClicked} setClicked={setBudgetClicked} onClick={()=>onBudgetClick(budgetObj.title)} text={budgetObj.title} />
+                            <Pill state={budget} clicked={budgetClicked} setClicked={setBudgetClicked} onClick={() => onBudgetClick(budgetObj.title)} text={budgetObj.title} />
                         ))}
                     </ul>
                 </div>
                 <div className={styles.serviceSec}>
-                <p style={{fontSize: 'calc(1.5rem + 3vw)', marginBottom: '50px'}}>Project Delivery Period</p>
-                    <ul style={{listStyle: 'none', padding: 0}}>
+                    <p style={{ fontSize: 'calc(1.5rem + 3vw)', marginBottom: '50px' }}>Project Delivery Period</p>
+                    <ul style={{ listStyle: 'none', padding: 0 }}>
                         {deliveryPeriod.map((periodObj, index) => (
-                            <Pill state={period} clicked={periodClicked} setClicked={setPeriodClicked} onClick={()=>onPeriodClick(periodObj.title)} text={periodObj.title} />
+                            <Pill state={period} clicked={periodClicked} setClicked={setPeriodClicked} onClick={() => onPeriodClick(periodObj.title)} text={periodObj.title} />
                         ))}
-                   </ul>
+                    </ul>
                 </div>
                 <div className={styles.formWrapper}>
-                    <p style={{fontSize: 'calc(1.5rem + 3vw)', marginBottom: '50px', textAlign: 'center'}}>Please tell us more.</p>
+                    <p style={{ fontSize: 'calc(1.5rem + 3vw)', marginBottom: '50px', textAlign: 'center' }}>Please tell us more.</p>
                     <form className={styles.form} onSubmit={handleSubmit}>
                         <div className={styles.inputWrapper}>
                             <label for="full_name">Your Name</label>
                             <input value={name} onChange={(e) => setName(e.target.value)} name="full_name" type={"text"} required />
-                            {formErrors.name && <div style={{color: 'red'}}>{formErrors.name}</div>}
+                            {formErrors.name && <div style={{ color: 'red' }}>{formErrors.name}</div>}
                         </div>
                         <div className={styles.inputWrapper}>
                             <label for="company">Company</label>
@@ -145,17 +145,17 @@ const Contact = () => {
                         <div className={styles.inputWrapper}>
                             <label for="email">E-mail</label>
                             <input value={email} onChange={(e) => setEmail(e.target.value)} name="email" type="email" required />
-                            {formErrors.email && <div style={{color: 'red'}}>{formErrors.email}</div>}
+                            {formErrors.email && <div style={{ color: 'red' }}>{formErrors.email}</div>}
                         </div>
                         <div className={styles.inputWrapper}>
                             <label for="brief">Project brief</label>
-                            <textarea value={details} onChange={(e) => setDetails(e.target.value)} cols={30} rows={5} name="brief"></textarea> 
+                            <textarea value={details} onChange={(e) => setDetails(e.target.value)} cols={30} rows={5} name="brief"></textarea>
                         </div>
                         {/* <div className={styles.contactButton}> */}
                         <button className={styles.contactButton} type="submit" disabled={loading}>{loading ? 'Sending...' : 'Submit!!'}</button>
-                    {/* </div> */}
+                        {/* </div> */}
                     </form>
-                    
+
                 </div>
             </div>
             <ToastContainer />

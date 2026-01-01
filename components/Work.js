@@ -4,8 +4,8 @@ import { Color, Texture, TextureLoader, Vector3 } from 'three';
 import * as THREE from 'three'
 import { Html, shaderMaterial } from '@react-three/drei';
 import { Suspense, useEffect, useLayoutEffect, useRef, useState } from 'react';
-import slideVertex from "raw-loader!glslify-loader!../shaders/slideVertex.vert"
-import slideFragment from "raw-loader!glslify-loader!../shaders/slideFragment.frag"
+import slideVertex from "../shaders/slideVertex.vert"
+import slideFragment from "../shaders/slideFragment.frag"
 import { workSlideShow } from '../data';
 import { useRouter } from 'next/router'
 import gsap from 'gsap';
@@ -20,15 +20,21 @@ const SlideShaderMaterial = shaderMaterial(
 extend({ SlideShaderMaterial })
 
 const HTML = ({ hovered, textRef, title }) => {
-    const animate = (node) => {
-        gsap.from(node, {
-            y: '100%'
-        })
+    const nodeRef = useRef(null);
+
+    const animate = () => {
+        if (nodeRef.current) {
+            gsap.from(nodeRef.current, {
+                y: '100%'
+            })
+        }
     }
-    const animateOut = (node) => {
-        gsap.to(node, {
-            y: '100%'
-        })
+    const animateOut = () => {
+        if (nodeRef.current) {
+            gsap.to(nodeRef.current, {
+                y: '100%'
+            })
+        }
     }
 
     return (
@@ -36,13 +42,14 @@ const HTML = ({ hovered, textRef, title }) => {
             <div style={{ overflow: 'hidden', height: '10vw' }}>
                 <Transition
                     in={hovered}
-                    onEnter={node => { animate(node) }}
-                    onExit={node => { animateOut(node) }}
+                    nodeRef={nodeRef}
+                    onEnter={animate}
+                    onExit={animateOut}
                     unmountOnExit
                     mountOnEnter
                     timeout={100}
                 >
-                    <p ref={textRef} id='workName' style={{ fontFamily: 'dharma M', fontSize: '10vw', mixBlendMode: 'difference', color: 'rgba(255, 255, 255, 0.9)', letterSpacing: '5px' }}>{title}</p>
+                    <p ref={nodeRef} id='workName' style={{ fontFamily: 'dharma M', fontSize: '10vw', mixBlendMode: 'difference', color: 'rgba(255, 255, 255, 0.9)', letterSpacing: '5px' }}>{title}</p>
                 </Transition>
             </div>
 
